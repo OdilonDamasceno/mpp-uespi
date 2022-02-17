@@ -1,8 +1,9 @@
 \usepackage{titlesec}
 \usepackage{titlepic}
+\usepackage{mathptmx}
 \usepackage[style=abnt]{biblatex}
 \bibliography{citations.bib}
-\usepackage{mathptmx}
+
 \geometry{a4paper,
  left=3cm,
  right=2cm,
@@ -20,6 +21,7 @@
 }
 
 \newcommand{\timeline}[1]{
+    \small
     \begin{tabular}{|l|llllllllllll|}
 \hline
 \multirow{2}{*}{ATIVIDADES} & \multicolumn{12}{l|}{MESES / ANOS} \\ \cline{2-13} 
@@ -72,10 +74,10 @@
 
 \renewcommand{\thepage}{\hfill{\arabic{page}}}
 
-\AddToHook{cmd/section/before}{\clearpage}
+\AddToHook{cmd/section/before}{\large\clearpage}
 
 \titleformat{\section}
-  {\normalfont}
+  {\large}
   {\thesection. }{0mm}
   {}[\titlerule]
 
@@ -103,3 +105,4 @@
     \section{Referências Bibliográficas}
     \printbibliography[heading=none]
 }
+
