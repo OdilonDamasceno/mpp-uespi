@@ -1,0 +1,109 @@
+\usepackage{titlesec}
+\usepackage{titlepic}
+\usepackage{fontspec}
+\usepackage[style=abnt]{biblatex}
+\bibliography{citations.bib}
+\setmainfont{Times New Roman}
+\usepackage{ifthen}
+\usepackage{tikz}
+
+\geometry{a4paper,
+ left=3cm,
+ right=2cm,
+ top=3cm,
+ bottom=2.5cm,
+}
+
+\def\advisor#1{\gdef\@advisor{#1}}
+\def\year#1{\gdef\@year{#1}}
+\def\degree#1{\gdef\@degree{#1}}
+
+\newcommand{\newactivity}[9]{
+#1& \multicolumn{1}{l|}{#2}    & \multicolumn{1}{l|}{#3}    & \multicolumn{1}{l|}{#4}    & \multicolumn{1}{l|}{#5}    & \multicolumn{1}{l|}{#6}    & \multicolumn{1}{l|}{#7}    & \multicolumn{1}{l|}{#8}    & \multicolumn{1}{l|}{#9}    & 
+    \newactivitycontinued
+}
+
+\newcommand{\timeline}[1]{
+    \begin{tabular}{|l|llllllllllll|}
+\hline
+\multirow{2}{*}{ATIVIDADES} & \multicolumn{12}{l|}{MESES / ANOS} \\ \cline{2-13} 
+& \multicolumn{12}{l|}{\@year} \\ \hline
+& \multicolumn{1}{l|}{Jan} & \multicolumn{1}{l|}{Fev} & \multicolumn{1}{l|}{Mar} & \multicolumn{1}{l|}{Abr} & \multicolumn{1}{l|}{Mai} & \multicolumn{1}{l|}{Jun} & \multicolumn{1}{l|}{Jul} & \multicolumn{1}{l|}{Ago} & \multicolumn{1}{l|}{Set} & \multicolumn{1}{l|}{Out} & \multicolumn{1}{l|}{Nov} & Dez \\ \hline
+    #1
+\end{tabular}
+}
+
+\newcommand{\newactivitycontinued}[4]{
+    \multicolumn{1}{l|}{#1}    & \multicolumn{1}{l|}{#2}    & \multicolumn{1}{l|}{#3}    &   #4  \\ \hline
+}
+
+\newcommand{\coverpage}{
+    \begin{titlepage}
+    \centering
+    \includegraphics[height=2.73cm]{bcc.png}
+    \\
+    \setstretch{1.5}
+    \vspace{0.2cm}
+    {\bfseries\large
+        UNIVERSIDADE ESTADUAL DO PIAUÍ\\
+    }
+    {\large
+        CAMPUS PROF. ALEXANDRE ALVES DE OLIVEIRA\\
+        COORDENAÇÃO DE CIÊNCIA DA COMPUTAÇÃO
+    }
+
+    \vfill
+    {\large\bfseries
+        PROJETO DE PESQUISA
+    }
+    \setstretch{1}
+    \vfill
+    {\large\@title}
+    \vfill
+    {\large\bfseries
+    \@author\\
+    }{\large Autor}
+    \vfill{\large\bfseries
+    \@advisor\\
+    }
+    {\large Orientador}
+    \vfill{\large
+    Parnaíba -- Piauí\\\@year
+    }
+    
+\end{titlepage}
+}
+
+\renewcommand{\thepage}{\hfill{\arabic{page}}}
+
+\AddToHook{cmd/section/before}{\clearpage}
+
+\titleformat{\section}
+  {\normalfont}
+  {\thesection. }{0mm}
+  {}[\titlerule]
+
+\newcommand{\aboutpage}
+{
+\begin{titlepage}
+    \centering
+    \large\MakeUppercase{\@author}
+    \\[6\baselineskip]
+    \MakeUppercase{\@title}
+    \\[10\baselineskip]
+    \begin{flushright}
+    \begin{minipage}{0.5\textwidth}{
+        Projeto de Pesquisa apresentado ao curso de Bacharelado em Ciência da Computação como requisito parcial para o cumprimento do componente curricular obrigatório Trabalho de Conclusão de Curso.
+    }\\Orientador: Prof. \@degree\@advisor
+    \end{minipage}
+    \end{flushright}
+    \vfill
+    Parnaíba -- Piauí\\
+    \@year
+\end{titlepage}
+}
+
+\newcommand{\references}{
+    \section{Referências Bibliográficas}
+    \printbibliography[heading=none]
+}
